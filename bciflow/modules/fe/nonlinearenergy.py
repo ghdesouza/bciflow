@@ -1,23 +1,7 @@
-'''
-nonlinearenergy.py
-
-Description
------------
-This module contains the implementation of the nonlinearenergy feature extractor.
-
-Dependencies
-------------
-eegdata on modules/core
-typing
-numpy
-
-'''
-
 import numpy as np
-from typing import Union, List, Optional
 
 class nonlinearenergy():
-    def __init__(self, flating: Optional[bool] = False): 
+    def __init__(self, flating: bool = False): 
         if type(flating) != bool:
             raise ValueError ("Has to be a boolean type value")
         else:

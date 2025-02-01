@@ -1,43 +1,8 @@
-'''
-emd_sift.py
-
-Description
------------
-This module contains the implementation of the Empirical Mode Decomposition (EMD) 
-applied to EEG data. The EMD function decomposes the input signals into Intrinsic Mode Functions (IMFs).
-
-Dependencies
-------------
-numpy, emd, os, sys, copy, matplotlib
-
-'''
-
 import numpy as np
 import emd
 
 def EMD(eegdata, n_imfs=5):
     
-    '''
-    Empirical Mode Decomposition (EMD) function to decompose signals into Intrinsic Mode Functions (IMFs).
-
-    Parameters
-    ----------
-    X : np.ndarray
-        Input EEG data. Expected shape is (n_trials, 1, n_electrodes, n_samples).
-    n_imfs : int, optional
-        Number of IMFs to extract, by default 5.
-
-    Returns
-    -------
-    np.ndarray
-        Decomposed IMFs with shape (n_trials, n_imfs, n_electrodes, n_samples).
-
-    Raises
-    ------
-    ValueError
-        If the input data does not have exactly one band (shape[1] != 1).
-    '''
-        
     X = eegdata['X'].copy()
     # verify if the data has only one band
     if X.shape[1] != 1:

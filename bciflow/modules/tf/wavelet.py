@@ -2,25 +2,7 @@ import numpy as np
 import pywt
 
 def wavelet(eegdata, levels=5):
-    ''' Wavelet transform.
-
-    Description
-    -----------
-    This function implements the wavelet transform.
-
-    Parameters
-    ----------
-    X : np.ndarray
-        The input data.
-    levels : int
-        The number of levels.
-
-    returns
-    -------
-    np.ndarray
-        The transformed data.
-
-    '''
+    
     X = eegdata['X'].copy()
     X = X.reshape((np.prod(X.shape[:-1]), X.shape[-1]))
 

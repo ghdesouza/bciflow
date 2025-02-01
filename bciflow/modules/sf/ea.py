@@ -1,19 +1,3 @@
-'''
-euclideanalignment.py
-
-Description
------------
-This module contains the implementation of the Euclidean Alignment method for Spatial filter.
-
-Dependencies
-------------
-numpy
-scipy
-
-'''
-
-
-
 from scipy.linalg import fractional_matrix_power
 import numpy as np
 

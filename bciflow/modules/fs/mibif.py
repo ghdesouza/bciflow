@@ -1,24 +1,8 @@
-'''
-mibif.py
-
-Description
------------
-This module contains the implementation of the Mutual Information Best Individual Features feature extractor.
-
-Dependencies
-------------
-nbpw on modules/clf
-numpy
-sklearn
-
-'''
-
 import numpy as np
 from sklearn.metrics import mutual_info_score
-from bciflow.modules.clf.nbpw import nbpw
 
 class MIBIF:
-    def __init__(self, n_features, paired=True, clf=nbpw()):
+    def __init__(self, n_features, clf, paired=True):
         self.original_n_features = n_features
         self.n_features = self.original_n_features
         self.paired = paired

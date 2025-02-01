@@ -1,51 +1,6 @@
-''' 
-bandpass.py
-
-Description
------------
-This module contains the implementation of the bandpass filter.
-
-Dependencies
-------------
-eegdata on modules/core
-trial_transform on modules/utils
-numpy
-scipy
-
-'''
-
 import numpy as np
 
 def bandpass_conv(eegdata, low_cut=4, high_cut=40, transition=None, window_type='hamming', kind='same'):
-    ''' Bandpass filter using convolution.
-
-    Description
-    -----------
-    This function implements a bandpass filter using convolution.
-
-    Parameters
-    ----------
-    X : np.ndarray
-        The input data.
-    sfreq : int
-        The sampling frequency.
-    low_cut : int
-        The low cut frequency.
-    high_cut : int
-        The high cut frequency.
-    transition : int or float or list
-        The transition bandwidth. If int or float, the same value is used for both low and high cut frequencies.
-    window_type : str
-        The window type for the filter.
-    kind : str
-        The mode for the convolution.
-
-    returns
-    -------
-    np.ndarray
-        The filtered data.
-
-    '''
     
     X = eegdata['X'].copy()
     sfreq = eegdata['sfreq']

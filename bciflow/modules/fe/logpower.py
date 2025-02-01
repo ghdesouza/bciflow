@@ -1,22 +1,6 @@
-'''
-logpower.py
-
-Description
------------
-This module contains the implementation of the logpower feature extractor.
-
-Dependencies
-------------
-eegdata on modules/core
-typing
-numpy
-
-'''
-
 import numpy as np
-from typing import Union, List, Optional
 
-def logpower(eegdata: dict, flating: Optional[bool] = False) -> dict:
+def logpower(eegdata: dict, flating: bool = False) -> dict:
 
     X = eegdata['X'].copy()
     X = X.reshape((np.prod(X.shape[:-1]), X.shape[-1]))

@@ -1,18 +1,3 @@
-'''
-csp.py
-
-Description
------------
-This module contains the implementation of the Common Spatial Patterns filter.
-
-Dependencies
-------------
-eegdata on modules/core
-numpy
-scipy
-
-'''
-
 import numpy as np
 import scipy as sp
 

@@ -1,24 +1,8 @@
-'''
-apsd.py
-
-Description
------------
-This module contains the implementation of the apsd feature extractor.
-
-Dependencies
-------------
-eegdata on modules/core
-typing
-numpy
-
-'''
-
 import numpy as np
 import scipy as sp
-from typing import Union, List, Optional
 
 class apsd():
-    def __init__(self, flating: Optional[bool] = False):
+    def __init__(self, flating: bool = False):
         if type(flating) != bool:
             raise ValueError ("Has to be a boolean type value")
         else:
