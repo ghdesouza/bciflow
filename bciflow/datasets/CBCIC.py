@@ -4,7 +4,7 @@ import scipy
 def cbcic(subject: int=1, 
           session_list: list=None,
           labels=['left-hand', 'right-hand'],
-          path='data/CBCIC/'):
+          path='data/cbcic/'):
     
     # Check if the subject input is valid
     if type(subject) != int:
