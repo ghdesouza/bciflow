@@ -1,14 +1,81 @@
+'''
+csp.py
+
+Description
+-----------
+This module contains the implementation of the Common Spatial Patterns filter.
+
+Dependencies
+------------
+numpy
+scipy
+
+'''
+
 import numpy as np
 import scipy as sp
 
 class csp:
+    ''' Common Spatial Patterns filter
+
+    Description
+    -----------
+    This class implements the Common Spatial Patterns filter.
+
+    Attributes
+    ----------
+    n_electrodes : int
+        The number of electrodes.
+    m_pairs : int
+        The number of pairs of features.
+    W : np.ndarray
+        The spatial filters.
+    bands : int
+        The number of bands used.
+    n_electrodes : int
+        The number of n_electrodes used.
+
+    Methods
+    -------
+    fit(eegdata):
+        Fits the filter to the data.
+    transform(eegdata):
+        Transforms the input data into the selected feature space.
+    fit_transform(eegdata):
+        Fits the filter to the data and transforms the input data into the selected feature space.
+
+    '''
     def __init__(self, m_pairs: int = 2):
+        ''' Initializes the class.
+
+        Parameters
+        ----------
+        m_pairs : int
+            The number of pairs of features.
+
+        returns
+        -------
+        None
+
+        '''
         if type(m_pairs) != int or m_pairs <= 0:
             raise ValueError("Must be a positive integer")
         else:
             self.m_pairs = m_pairs
 
     def fit(self, eegdata: dict) -> np.ndarray:
+        ''' Fits the filter to the data.
+        
+        Parameters
+        ----------
+        eegdata : dict
+            The input data.
+        
+        returns
+        -------
+        self
+            
+        '''
         X = None
         y = None
         if type(eegdata['X']) != np.ndarray:
@@ -65,6 +132,19 @@ class csp:
         return self
 
     def transform(self, eegdata: dict) -> dict:
+        ''' Transforms the input data into the selected feature space.
+        
+        Parameters
+        ----------
+        eegdata : dict
+            The input data.
+            
+        returns
+        -------
+        output : dict
+            The transformed data.
+            
+        '''
         X = None
         y = None
         if type(eegdata['X']) != np.ndarray:
@@ -88,6 +168,19 @@ class csp:
         #X_ = [np.transpose(self.W) @ X_[i] for i in range(len(X_))]
 
     def fit_transform(self, eegdata: dict) -> dict:
+        ''' Fits the filter to the data and transforms the input data into the selected feature space.
+
+        Parameters
+        ----------
+        eegdata : dict
+            The input data.
+        
+        returns
+        -------
+        output : dict
+            The transformed data.
+            
+        '''
         X = None
         y = None
         if type(eegdata['X']) != np.ndarray:

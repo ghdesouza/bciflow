@@ -1,8 +1,76 @@
+'''
+mibif.py
+
+Description
+-----------
+This module contains the implementation of the Mutual Information Best Individual Features feature extractor.
+
+Dependencies
+------------
+numpy
+sklearn
+
+'''
+
 import numpy as np
 from sklearn.metrics import mutual_info_score
 
 class MIBIF:
+    ''' Mutual Information Best Individual Features feature extractor
+
+    Description
+    -----------
+    This class implements the Mutual Information Best Individual Features feature extractor.
+
+    Attributes
+    ----------
+    n_features : int
+        The number of features to be selected.
+    original_n_features : int
+        The original total number of features available.
+    paired : bool
+        Whether the features are paired or not.
+    order : list
+        The order of the features.
+    clf : nbpw
+        The classifier used to calculate the mutual information.
+    pairs : np.ndarray
+        The pairs of features.
+
+    Methods
+    -------
+    find_pair(u, max_col):
+        Finds the pair of a feature.
+    fit(eegdata):  
+        Fits the feature extractor to the data.
+    transform(eegdata):
+        Transforms the input data into the selected feature space.
+    fit_transform(eegdata):
+        Fits the feature extractor to the data and transforms the input data into the selected feature space.
+
+    '''
     def __init__(self, n_features, clf, paired=True):
+        ''' Initializes the class.
+        
+        Description
+        -----------
+        This method initializes the class. It receives the number of features to be selected, the total number of features
+        available, and whether the features are paired or not. It does not return anything.
+        
+        Parameters
+        ----------
+        n_features : int
+            The number of features to be selected.
+        paired : bool
+            Whether the features are paired or not.
+            Just for CSP, use paired=True.
+
+        Returns
+        -------
+        None
+        
+        '''
+
         self.original_n_features = n_features
         self.n_features = self.original_n_features
         self.paired = paired
@@ -10,6 +78,31 @@ class MIBIF:
         self.clf = clf
 
     def find_pair(self, u, max_col):
+        ''' Finds the pair of a feature.
+
+        Description
+        -----------
+        This method finds the pair of a feature. 
+        It receives the feature index and the maximum number of columns. 
+        It returns the index of the pair of the feature.
+
+        Warning
+        -------
+        This method is only used when the features are paired in CSP.
+
+        Parameters
+        ----------
+        u : int
+            The feature index.
+        max_col : int
+            The maximum number of columns.
+
+        Returns
+        -------
+        int
+            The index of the pair of the feature.
+
+        '''
         i = int(u / max_col)
         j = u % max_col
         j_pair = max_col - 1 - j
@@ -17,6 +110,25 @@ class MIBIF:
         return u
 
     def fit(self, eegdata):
+        ''' Fits the feature extractor to the data.
+
+        Description
+        -----------
+        This method fits the feature extractor to the data.
+        It receives the input data and the labels.
+        It does return itself.
+
+        Parameters
+        ----------
+        eegdata : dict
+            The input data.
+        
+        Returns
+        -------
+        self
+
+        '''
+
         self.n_features = self.original_n_features
 
         X = eegdata['X'].copy()
@@ -64,6 +176,26 @@ class MIBIF:
         return self
 
     def transform(self, eegdata):
+        ''' Transforms the input data into the selected feature space.
+        
+        Description
+        -----------
+        This method transforms the input data into the selected feature space.
+        It receives the input data.
+        It returns the transformed data.
+        
+        Parameters
+        ----------
+        eegdata : dict
+            The input data.
+            
+        Returns
+        -------
+        output : dict
+            The transformed data.
+            
+        '''
+
         X = eegdata['X'].copy()
 
         X_ = [X[i].reshape(-1) for i in range(len(X))]
@@ -74,5 +206,25 @@ class MIBIF:
         return eegdata
 
     def fit_transform(self, eegdata):
+        ''' Fits the feature extractor to the data and transforms the input data into the selected feature space.
+
+        Description
+        -----------
+        This method fits the feature extractor to the data and transforms the input data into the selected feature space.
+        It receives the input data and the labels.
+        It returns the transformed data.
+
+        Parameters
+        ----------
+        eegdata : dict
+            The input data.
+
+        Returns
+        -------
+        output : dict
+            The transformed data.
+
+        '''
+        
         return self.fit(eegdata).transform(eegdata)
 

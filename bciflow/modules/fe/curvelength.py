@@ -1,18 +1,97 @@
+'''
+curvelength.py
+
+Description
+-----------
+This module contains the implementation of the Curve Length feature extractor.
+
+Dependencies
+------------
+numpy
+
+'''
+
 import numpy as np
 
 class curvelength():
+    ''' Curve Length feature extractor
+    
+    Description
+    -----------
+    This class implements the Curve Length feature extractor.
+    
+    Attributes
+    ----------
+    None
+    
+    Methods
+    -------
+    transform(data):
+        Transforms the input data into the Curve Length feature space.
+        
+    '''
     def __init__(self, flating: bool = False):
+        ''' Initializes the class.
+        
+        Description
+        -----------
+        This method initializes the class. Here you decide whether to return the data in a flat format.
+        The default is False. It does not return anything.
+        
+        Parameters
+        ----------
+        flating : bool, optional
+        
+        Returns
+        -------
+        None
+        
+        '''
         if type(flating) != bool:
             raise ValueError ("Has to be a boolean type value")
         else:
             self.flating = flating
 
     def fit(self, eegdata):
+        ''' That method does nothing.
+        
+        Description
+        -----------
+        This method does nothing.
+        
+        Parameters
+        ----------
+        eegdata : dict
+            The input data.
+            
+        Returns
+        -------
+        self
+        
+        '''
         if type(eegdata) != dict:
             raise ValueError ("Has to be a dict type")         
         return self
 
     def transform(self, eegdata) -> dict:
+        ''' Transforms the input data into the logpower feature space.
+        
+        Description
+        -----------
+        This method transforms the input data into the logpower feature space. It returns a
+        dictionary with the transformed data.
+        
+        Parameters
+        ----------
+        eegdata : dict
+            The input data.
+    
+        Returns
+        -------
+        output : dict
+            The transformed data.
+            
+        '''
         if type(eegdata) != dict:
             raise ValueError ("Has to be a dict type")                
         X = eegdata['X'].copy()
@@ -43,5 +122,23 @@ class curvelength():
         return eegdata
     
     def fit_transform(self, eegdata) -> dict:
+        ''' Fits the model to the input data and transforms it into the Curve Length feature space.
+        
+        Description
+        -----------
+        This method fits the model to the input data and transforms it into the Curve Length feature
+        space. It returns a dictionary with the transformed data.
+        
+        Parameters
+        ----------
+        eegdata : dict
+            The input data.
+          
+        Returns
+        -------
+        output : dict
+            The transformed data.
+            
+        '''
         return self.fit(eegdata).transform(eegdata)
 

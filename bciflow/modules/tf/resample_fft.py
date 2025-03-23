@@ -1,8 +1,39 @@
+'''
+resample_fft.py
+
+Description
+-----------
+This module contains the implementation of FFT-based resampling for EEG data. 
+The fft_resample function uses the Fast Fourier Transform (FFT) to resample the input signals to a new sampling frequency.
+
+Dependencies
+------------
+numpy
+scipy
+
+'''
+
 import numpy as np
 from scipy.signal import resample
 
 def fft_resample(eegdata, new_sfreq):
-    
+    '''
+    Resamples the input EEG data to a new sampling frequency using FFT.
+
+    Parameters
+    ----------
+    eegdata : dict
+        Input EEG data.
+    new_sfreq : float
+        New sampling frequency to resample the data.
+
+    Returns
+    -------
+    output : dict
+        The resampled data and the new sampling frequency.
+
+    '''
+
     X = eegdata['X'].copy()
     X = X.reshape((np.prod(X.shape[:-1]), X.shape[-1]))
     sfreq = eegdata['sfreq']
