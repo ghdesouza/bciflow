@@ -1,3 +1,18 @@
+'''
+CBCIC.py
+
+Description
+-----------
+This code is used to load EEG data from the CBCIC dataset. It modifies the data to fit the requirements of the eegdata dictionary, which is used to store and process EEG data.
+
+Dependencies
+------------
+numpy
+pandas
+scipy 
+'''
+
+
 import numpy as np
 import scipy
 
@@ -6,6 +21,33 @@ def cbcic(subject: int=1,
           labels=['left-hand', 'right-hand'],
           path='data/cbcic/'):
     
+    """
+    Description
+    -----------
+    
+    Load EEG data from the CBCIC dataset. 
+    It modifies the data to fit the requirements of the eegdata dictionary, which is used to store and process EEG data. 
+
+    Parameters
+    ----------
+        subject : int
+            index of the subject to retrieve the data from.
+        session_list : list, optional
+            list of session codes. 
+            default state is None, which results on the collection of all session. 
+        labels : list
+            list of labels used in the dataset.
+            default state is to use all labels.
+        path : str
+            path to the foldar that contains all dataset files.
+
+
+    Returns:
+    ----------
+        eegdata: A dictionary containing the loaded EEG data.
+
+    """
+
     # Check if the subject input is valid
     if type(subject) != int:
         raise ValueError("subject has to be a int type value")

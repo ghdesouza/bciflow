@@ -1,8 +1,40 @@
+'''
+filterbank.py
+
+Description
+-----------
+This module contains the implementation of the Wavelet transformation.
+
+Dependencies
+------------
+numpy
+pywt
+
+'''
+
 import numpy as np
 import pywt
 
 def wavelet(eegdata, levels=5):
-    
+    ''' Wavelet transform.
+
+    Description
+    -----------
+    This function implements the wavelet transform.
+
+    Parameters
+    ----------
+    eegdata : dict
+        Input EEG data.
+    levels : int
+        The number of levels.
+
+    returns
+    -------
+    output : dict
+        The transformed data.
+
+    '''
     X = eegdata['X'].copy()
     X = X.reshape((np.prod(X.shape[:-1]), X.shape[-1]))
 

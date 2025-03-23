@@ -1,7 +1,40 @@
+'''
+logpower.py
+
+Description
+-----------
+This module contains the implementation of the logpower feature extractor.
+
+Dependencies
+------------
+numpy
+
+'''
 import numpy as np
 
 def logpower(eegdata: dict, flating: bool = False) -> dict:
+    ''' Logpower feature extractor
+    
+    Description
+    -----------
+    This method implements the logpower feature extractor.
+    It transforms the input data into the logpower feature space. 
+    It returns a dictionary with the transformed data.
 
+    Attributes
+    ----------
+    eegdata : dict
+        The input data.
+    flating : bool
+        Decides whether to return the data in a flat format.
+        Default is False.
+
+    Returns
+    -------
+    output : dict
+        The transformed data.
+
+    '''
     X = eegdata['X'].copy()
     X = X.reshape((np.prod(X.shape[:-1]), X.shape[-1]))
 

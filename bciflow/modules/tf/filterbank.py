@@ -1,10 +1,51 @@
+'''
+filterbank.py
+
+Description
+-----------
+This module contains the implementation of the Filter Bank.
+It permits the filtering of data according to the bandpass you choose.
+
+Dependencies
+------------
+bandpass_conv on modules/tf/bandpass
+chebyshevII on modules/tf/bandpass
+numpy
+
+'''
+
+
 import numpy as np
 
 from bciflow.modules.tf.bandpass.convolution import bandpass_conv
 from bciflow.modules.tf.bandpass.chebyshevII import chebyshevII
 
 def filterbank(eegdata, low_cut=[4,8,12,16,20,24,28,32,36], high_cut=[8,12,16,20,24,28,32,36,40], kind_bp='conv', **kwargs):
-    
+    ''' Filterbank.
+
+    Description
+    -----------
+    This function implements a filterbank.
+
+    Parameters
+    ----------
+    eegdata : dict
+        Input EEG data.
+    low_cut : int or list
+        The low cut frequency.
+    high_cut : int or list
+        The high cut frequency.
+    kind_bp : str
+        The type of filter to use. Options are 'conv' and 'chebyshevII'.
+    kwargs : dict
+        Additional arguments to be passed to the filter function.
+
+    returns
+    -------
+    output : dict
+        The filtered data.
+
+    '''
     X = eegdata['X'].copy()
     # verify if the data has only one band
     if X.shape[1] != 1:
