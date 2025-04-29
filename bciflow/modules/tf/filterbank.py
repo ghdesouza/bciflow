@@ -78,4 +78,4 @@ def filterbank(eegdata, low_cut=[4,8,12,16,20,24,28,32,36], high_cut=[8,12,16,20
     
     eegdata['X'] = X_
 
-    return eegdata, X__
+    return eegdata

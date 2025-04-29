@@ -80,12 +80,12 @@ def kfold(target, start_window=0, start_test_window=None, window_size=2, pre_fol
 
         target_train = []
         for tmin_ in start_window:
-            target_train.append(util.get_trial(data=target, ids=train_index))
+            target_train.append(util.get_trial(data=target_dict, ids=train_index))
         target_train = util.concatenate(target_train)
 
         target_test = {}
         for tmin_ in start_test_window:
-            target_test[tmin_] = util.get_trial(data=target, ids=test_index)
+            target_test[tmin_] = util.get_trial(data=target_dict, ids=test_index)
 
         for name, pos_func in pos_folding.items():
             

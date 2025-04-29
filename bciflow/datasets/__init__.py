@@ -1,2 +1,2 @@
-from .cbcic import *
+from .CBCIC import *
 from .mengu import *
